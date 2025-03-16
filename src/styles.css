@@ -287,3 +287,48 @@ h2 {
     color: red;
     margin-bottom: 1rem;
 }
+
+/* Toggle Button */
+.toggle-btn {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.toggle-btn:hover {
+    background: #0056b3;
+}
+
+/* Review Cards */
+.review-card {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.review-card.flagged {
+    background: #ffe5e5;
+    border-left: 5px solid red;
+}
+
+.review-comment {
+    font-style: italic;
+}
+
+.review-reason {
+    color: red;
+    font-weight: bold;
+}
+
+.review-rating,
+.review-user {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+}

@@ -6,6 +6,8 @@ const ProductReviews = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [reviews, setReviews] = useState([]);
+  const [flaggedReviews, setFlaggedReviews] = useState([]);
+  const [showFlagged, setShowFlagged] = useState(false);
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(0);
   const [error, setError] = useState("");
@@ -22,6 +24,25 @@ const ProductReviews = () => {
       }
     };
 
+    const fetchFlaggedReviews = async () => {
+      try {
+        const token = localStorage.getItem("token"); // Ensure user is authenticated
+        if (!token) return;
+
+        const res = await axios.get(`${API_URL}/api/products/${id}/flaggedreviews`, {
+          headers: { "x-auth-token": token },
+        });
+        console.log(res.data.length);
+        if (res.data && Array.isArray(res.data)) {
+          setFlaggedReviews(res.data);
+        } else {
+          setFlaggedReviews([]); // Ensure no undefined state
+        }
+      } catch (err) {
+        console.error("Error fetching flagged reviews:", err);
+      }
+    };
+
     const fetchProduct = async () => {
       try {
         const res = await axios.get(`${API_URL}/api/products`);
@@ -33,11 +54,13 @@ const ProductReviews = () => {
     };
 
     fetchReviews();
+    fetchFlaggedReviews();
     fetchProduct();
   }, [API_URL, id]);
 
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
+
     const token = localStorage.getItem("token");
     if (!token) {
       setError("Please login to post a review");
@@ -73,6 +96,15 @@ const ProductReviews = () => {
       </button>
       <h2>{product ? product.name : "Product"} - Reviews</h2>
 
+      {/* Toggle Button for Normal vs. Flagged Reviews */}
+      <button
+        onClick={() => setShowFlagged(!showFlagged)}
+        className="toggle-btn"
+      >
+        {showFlagged ? "Show Normal Reviews" : "Show Flagged Reviews"}
+      </button>
+
+      {/* Review Form */}
       <form onSubmit={handleReviewSubmit} className="review-form">
         <h3>Post a Review</h3>
         {error && <p className="error">{error}</p>}
@@ -94,20 +126,44 @@ const ProductReviews = () => {
         <button type="submit">Submit Review</button>
       </form>
 
+      {/* Reviews Section */}
       <div className="reviews">
-        <h3>All Reviews</h3>
-        {reviews.length === 0 ? (
-          <p>No reviews yet.</p>
-        ) : (
-          reviews.map((rev) => (
-            <div key={rev._id} className="review-card">
-              <p className="review-comment">"{rev.comment}"</p>
-              <p className="review-rating">Rating: {rev.rating}</p>
-              <p className="review-user">
-                - {rev.user?.username || "Anonymous"}
+        {showFlagged ? (
+          <>
+            <h3>Flagged Reviews</h3>
+            {flaggedReviews.length > 0 ? (
+              flaggedReviews.map((rev) => (
+                <div key={rev._id} className="review-card flagged">
+                  <p className="review-comment">"{rev.comment}"</p>
+                  <p className="review-reason">Reason: {rev.reason}</p>
+                  <p className="review-user">
+                    By: {rev.user?.username || "Anonymous"}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <p style={{ color: "red", fontWeight: "bold" }}>
+                No flagged reviews found.
               </p>
-            </div>
-          ))
+            )}
+          </>
+        ) : (
+          <>
+            <h3>All Reviews</h3>
+            {reviews.length > 0 ? (
+              reviews.map((rev) => (
+                <div key={rev._id} className="review-card">
+                  <p className="review-comment">"{rev.comment}"</p>
+                  <p className="review-rating">Rating: {rev.rating}</p>
+                  <p className="review-user">
+                    By: {rev.user?.username || "Anonymous"}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <p>No reviews yet.</p>
+            )}
+          </>
         )}
       </div>
     </div>
