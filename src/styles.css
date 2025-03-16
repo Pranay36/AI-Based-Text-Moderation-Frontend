@@ -1,4 +1,4 @@
-/* Global styles */
+/* Global Styles */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -11,13 +11,14 @@ body {
     padding: 0 1rem;
 }
 
-/* Home Page */
+/* Headings */
 h1,
 h2 {
     text-align: center;
     margin-bottom: 1rem;
 }
 
+/* Product Grid */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -56,10 +57,11 @@ h2 {
 
 /* Auth Forms */
 .auth-container {
-    max-width: 400px;
+    max-width: 350px;
+    /* Reduced width */
     margin: 3rem auto;
     background: #fff;
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -135,109 +137,6 @@ h2 {
     cursor: pointer;
 }
 
-.reviews {
-    margin-top: 2rem;
-}
-
-.review-card {
-    background: #fff;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.review-comment {
-    font-style: italic;
-}
-
-.review-rating,
-.review-user {
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    color: #555;
-}
-
-/* Header styling */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-/* Logout button styling */
-.logout-btn {
-    background: #dc3545;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.logout-btn:hover {
-    background: #c82333;
-}
-
-/* Container and general layout */
-.container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    font-family: Arial, sans-serif;
-}
-
-/* Back button */
-.back-btn {
-    background: transparent;
-    border: none;
-    font-size: 1rem;
-    color: #007bff;
-    cursor: pointer;
-    margin-bottom: 1rem;
-}
-
-.back-btn:hover {
-    text-decoration: underline;
-}
-
-/* Review Form */
-.review-form {
-    background: #fff;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.review-form textarea {
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    min-height: 80px;
-    resize: vertical;
-}
-
-.review-form input[type="number"] {
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.review-form button {
-    background: #007bff;
-    color: #fff;
-    border: none;
-    padding: 0.75rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
 .review-form button:hover {
     background: #0056b3;
 }
@@ -267,27 +166,6 @@ h2 {
     margin-bottom: 0.5rem;
 }
 
-/* Delete Button */
-.delete-btn {
-    background: #dc3545;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 0.75rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.85rem;
-}
-
-.delete-btn:hover {
-    background: #c82333;
-}
-
-/* Error Message */
-.error {
-    color: red;
-    margin-bottom: 1rem;
-}
-
 /* Toggle Button */
 .toggle-btn {
     background: #007bff;
@@ -303,22 +181,10 @@ h2 {
     background: #0056b3;
 }
 
-/* Review Cards */
-.review-card {
-    background: #fff;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
+/* Flagged Reviews */
 .review-card.flagged {
     background: #ffe5e5;
     border-left: 5px solid red;
-}
-
-.review-comment {
-    font-style: italic;
 }
 
 .review-reason {
@@ -326,9 +192,16 @@ h2 {
     font-weight: bold;
 }
 
-.review-rating,
-.review-user {
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    color: #555;
+/* Logout Button */
+.logout-btn {
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background: #c82333;
 }
